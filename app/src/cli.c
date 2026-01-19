@@ -15,7 +15,7 @@
 #include "util/strbuf.h"
 #include "util/term.h"
 #include "util/tick.h"
-
+static bool anticrack;
 #define STR_IMPL_(x) #x
 #define STR(x) STR_IMPL_(x)
 
