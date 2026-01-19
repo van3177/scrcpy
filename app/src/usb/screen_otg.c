@@ -126,8 +126,8 @@ sc_screen_otg_process_mouse_motion(struct sc_screen_otg *screen,
 
     struct sc_mouse_motion_event evt = {
         // .position not used for HID events
-        .xrel = event->xrel,
-        .yrel = event->yrel,
+        .xrel = event->xrel / 256.0f,
+        .yrel = event->yrel / 256.0f,
         .buttons_state = sc_mouse_buttons_state_from_sdl(event->state),
     };
 
