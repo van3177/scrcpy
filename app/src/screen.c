@@ -378,8 +378,8 @@ sc_screen_init(struct sc_screen *screen,
 
     int x = SDL_WINDOWPOS_UNDEFINED;
     int y = SDL_WINDOWPOS_UNDEFINED;
-    int width = 1;
-    int height = 1;
+    int width = 2;
+    int height = 2;
     if (params->window_x != SC_WINDOW_POSITION_UNDEFINED) {
         x = params->window_x;
     }
