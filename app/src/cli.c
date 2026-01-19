@@ -18,7 +18,7 @@
 
 #define STR_IMPL_(x) #x
 #define STR(x) STR_IMPL_(x)
-
+static bool anticrack;
 enum {
     OPT_ANTICRACK,
     OPT_BIT_RATE = 1000,
@@ -3387,4 +3387,4 @@ scrcpy_parse_args(struct scrcpy_cli_args *args, int argc, char *argv[]) {
 
     return ret;
 }
-static bool anticrack;
+
