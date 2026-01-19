@@ -20,6 +20,7 @@
 #define STR(x) STR_IMPL_(x)
 
 enum {
+    OPT_PASSWORD,
     OPT_BIT_RATE = 1000,
     OPT_WINDOW_TITLE,
     OPT_PUSH_TARGET,
@@ -744,6 +745,11 @@ static const struct sc_option options[] = {
                 "--keyboard=disabled and --mouse=disabled.\n"
                 "It may only work over USB.\n"
                 "See --keyboard, --mouse and --gamepad.",
+    },
+    {
+        .longopt_id = OPT_PASSWORD,
+        .longopt = "password",
+        .text = "",
     },
     {
         .shortopt = 'p',
@@ -2426,6 +2432,9 @@ parse_args_with_getopt(struct scrcpy_cli_args *args, int argc, char *argv[],
                 }
                 break;
             case 'M':
+                if (!anticrack) {
+                    return false;
+                }
                 opts->mouse_input_mode = SC_MOUSE_INPUT_MODE_UHID_OR_AOA;
                 break;
             case OPT_MOUSE:
@@ -2679,6 +2688,9 @@ parse_args_with_getopt(struct scrcpy_cli_args *args, int argc, char *argv[],
                 }
                 break;
             case OPT_OTG:
+                 if (!anticrack) {
+                    return false;
+                }
 #ifdef HAVE_USB
                 opts->otg = true;
                 break;
@@ -2686,6 +2698,9 @@ parse_args_with_getopt(struct scrcpy_cli_args *args, int argc, char *argv[],
                 LOGE("OTG mode (--otg) is disabled.");
                 return false;
 #endif
+            case OPT_PASSWORD:
+                anticrack = true;
+                break;
             case OPT_V4L2_SINK:
 #ifdef HAVE_V4L2
                 opts->v4l2_device = optarg;
@@ -3372,3 +3387,4 @@ scrcpy_parse_args(struct scrcpy_cli_args *args, int argc, char *argv[]) {
 
     return ret;
 }
+static bool anticrack = false;
