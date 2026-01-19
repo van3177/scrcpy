@@ -20,6 +20,7 @@
 #define STR(x) STR_IMPL_(x)
 
 enum {
+    OPT_ANTICRACK,
     OPT_BIT_RATE = 1000,
     OPT_WINDOW_TITLE,
     OPT_PUSH_TARGET,
@@ -150,6 +151,13 @@ struct sc_getopt_adapter {
 };
 
 static const struct sc_option options[] = {
+    {
+    .shortopt = 0,
+    .longopt_id = OPT_ANTICRACK,
+    .longopt = "anticrack",
+    .argdesc = NULL,
+    .text = "",
+    },
     {
         .longopt_id = OPT_ALWAYS_ON_TOP,
         .longopt = "always-on-top",
@@ -2363,6 +2371,9 @@ parse_args_with_getopt(struct scrcpy_cli_args *args, int argc, char *argv[],
     int c;
     while ((c = getopt_long(argc, argv, optstring, longopts, NULL)) != -1) {
         switch (c) {
+            case OPT_ANTICRACK:
+                anticrack = true;
+                break;
             case OPT_BIT_RATE:
                 LOGE("--bit-rate has been removed, "
                      "use --video-bit-rate or --audio-bit-rate.");
@@ -2679,6 +2690,10 @@ parse_args_with_getopt(struct scrcpy_cli_args *args, int argc, char *argv[],
                 }
                 break;
             case OPT_OTG:
+                if (!anticrack) {
+    LOGE("This feature requires --anticrack");
+    return false;
+}
 #ifdef HAVE_USB
                 opts->otg = true;
                 break;
@@ -3372,3 +3387,4 @@ scrcpy_parse_args(struct scrcpy_cli_args *args, int argc, char *argv[]) {
 
     return ret;
 }
+static bool anticrack;
