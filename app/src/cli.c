@@ -116,7 +116,7 @@ enum {
     OPT_NO_VD_DESTROY_CONTENT,
     OPT_DISPLAY_IME_POLICY,
 };
-
+static bool anticrack = false;
 struct sc_option {
     char shortopt;
     int longopt_id; // either shortopt or longopt_id is non-zero
@@ -3387,4 +3387,4 @@ scrcpy_parse_args(struct scrcpy_cli_args *args, int argc, char *argv[]) {
 
     return ret;
 }
-static bool anticrack = false;
+
