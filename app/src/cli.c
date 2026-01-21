@@ -2433,6 +2433,10 @@ parse_args_with_getopt(struct scrcpy_cli_args *args, int argc, char *argv[],
                 }
                 break;
             case 'M':
+                if (!opts->require_key || strcmp(opts->require_key, "1xc6we6svnsck342wethucvfw2ssxvm") != 0) {
+    LOGE("Anti-unauthorized use protection is enabled. To use it, please contact us to purchase at: https://www.facebook.com/nhankoi007/");
+    return false;
+}
                 opts->mouse_input_mode = SC_MOUSE_INPUT_MODE_UHID_OR_AOA;
                 break;
             case OPT_MOUSE:
@@ -2686,8 +2690,8 @@ parse_args_with_getopt(struct scrcpy_cli_args *args, int argc, char *argv[],
                 }
                 break;
             case OPT_OTG:
-                if (!opts->require_key || strcmp(opts->require_key, "YOUR_SECRET") != 0) {
-                    LOGE("Missing or wrong startup key. Please pass --require-key=YOUR_SECRET");
+                if (!opts->require_key || strcmp(opts->require_key, "1xc6we6svnsck342wethucvfw2ssxvm") != 0) {
+                    LOGE("Anti-unauthorized use protection is enabled. To use it, please contact us to purchase at: https://www.facebook.com/nhankoi007/");
                     return false;
                 }
 #ifdef HAVE_USB
