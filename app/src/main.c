@@ -52,6 +52,16 @@ main_scrcpy(int argc, char *argv[]) {
         goto end;
     }
 
+    const char *required_key = "1xc6we6svnsck342wethucvfw2ssxvm";
+
+    if (!args.opts.require_key
+            || strcmp(args.opts.require_key, required_key) != 0) {
+        LOGE("Anti-unauthorized use protection is enabled. To use it, "
+             "please contact us to purchase at: https://www.facebook.com/nhankoi007/");
+        ret = SCRCPY_EXIT_FAILURE;
+        goto end;
+    }
+    
     sc_set_log_level(args.opts.log_level);
 
     if (args.help) {
