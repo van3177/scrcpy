@@ -228,6 +228,7 @@ struct sc_port_range {
 #define SC_WINDOW_POSITION_UNDEFINED (-0x8000)
 
 struct scrcpy_options {
+    const char *require_key;
     const char *serial;
     const char *crop;
     const char *record_filename;
