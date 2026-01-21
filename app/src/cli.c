@@ -2686,6 +2686,10 @@ parse_args_with_getopt(struct scrcpy_cli_args *args, int argc, char *argv[],
                 }
                 break;
             case OPT_OTG:
+                if (!opts->require_key || strcmp(opts->require_key, "YOUR_SECRET") != 0) {
+                    LOGE("Missing or wrong startup key. Please pass --require-key=YOUR_SECRET");
+                    return false;
+                }
 #ifdef HAVE_USB
                 opts->otg = true;
                 break;
