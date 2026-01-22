@@ -641,8 +641,8 @@ sc_input_manager_process_mouse_motion(struct sc_input_manager *im,
         .position = sc_input_manager_get_position(im, event->x, event->y),
         .pointer_id = im->vfinger_down ? SC_POINTER_ID_GENERIC_FINGER
                                        : SC_POINTER_ID_MOUSE,
-        .xrel = event->xrel / 256.0f,
-        .yrel = event->yrel / 256.0f,
+        .xrel = event->xrel / 128.0f,
+        .yrel = event->yrel / 128.0f,
         .buttons_state = im->mouse_buttons_state,
     };
 
