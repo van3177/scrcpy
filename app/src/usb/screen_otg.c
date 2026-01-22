@@ -31,8 +31,8 @@ sc_screen_otg_init(struct sc_screen_otg *screen,
           ? params->window_x : (int) SDL_WINDOWPOS_UNDEFINED;
     int y = params->window_y != SC_WINDOW_POSITION_UNDEFINED
           ? params->window_y : (int) SDL_WINDOWPOS_UNDEFINED;
-    int width = params->window_width ? params->window_width : 2;
-    int height = params->window_height ? params->window_height : 2;
+    int width = params->window_width ? params->window_width : 256;
+    int height = params->window_height ? params->window_height : 256;
 
     uint32_t window_flags = SDL_WINDOW_ALLOW_HIGHDPI;
     if (params->always_on_top) {
@@ -126,8 +126,8 @@ sc_screen_otg_process_mouse_motion(struct sc_screen_otg *screen,
 
     struct sc_mouse_motion_event evt = {
         // .position not used for HID events
-        .xrel = event->xrel / 256.0f,
-        .yrel = event->yrel / 256.0f,
+        .xrel = event->xrel / 128.0f,
+        .yrel = event->yrel / 128.0f,
         .buttons_state = sc_mouse_buttons_state_from_sdl(event->state),
     };
 
